@@ -3,6 +3,7 @@ package div2_823;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Main {
     static Scanner sc;
@@ -16,28 +17,28 @@ public class Main {
             minNotation();
         }
     }
-    static void minNotation(){
+    static void minNotation(){ //upsolved
         char[] s = sc.next().toCharArray();
-        int[][] arr = new int[s.length][2];
-        for(int i=0;i<s.length;i++){
-            arr[i][0] =s[i];
-            arr[i][1] = i;
-        }
-        Arrays.sort(arr,(a,b)->a[0]==b[0]?a[1]-b[1]:a[0]-b[0]);
-        StringBuilder sb =  new StringBuilder("");
-        int maxIndex=-1;
-        for(int[] a:arr){
-            char c = (char)a[0];
-            int index = a[1];
-            if(index>maxIndex){
-                sb.append(c);
-            }else{
-                if(c!='9') c = (char)(++c);
-                sb.append(c);
+        Stack<Integer> st = new Stack<>();
+        int[] count = new int[10];
+        for(char c: s){
+            int curr = c-'0';
+            while(!st.isEmpty() && st.peek()>curr){
+                count[Math.min(st.pop()+1,9)]++;
             }
-            maxIndex = Math.max(index,maxIndex);
+            st.push(curr);
         }
-        System.out.println(sb.toString());
+        while(!st.isEmpty()){
+            count[st.pop()]++;
+        }
+        StringBuilder sb = new StringBuilder("");
+        for(int i=0;i<=9;i++){
+            while(count[i]!=0){
+                sb.append(i);
+                count[i]--;
+            }
+        }
+        System.out.println(sb);
     }
     static void planet(){
         int n = sc.nextInt(),c = sc.nextInt();
