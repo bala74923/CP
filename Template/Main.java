@@ -26,5 +26,4 @@ public class Main {
         String s = sc.next();
         return s.toCharArray();
     }
-
 }
