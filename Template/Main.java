@@ -5,6 +5,9 @@ import java.util.Scanner;
 public class Main {
     static Scanner sc;
     static int mod = (int)1e9+7;
+    static String yes= "YES";
+    static String no = "NO";
+    static int max = Integer.MAX_VALUE, min = Integer.MIN_VALUE;
     public static void main(String[] args) {
         solve();
     }
@@ -12,8 +15,11 @@ public class Main {
         sc = new Scanner(System.in);
         int test = sc.nextInt();sc.nextLine();
         while(test-->0){
-           // return solution method
+          solution();
         }
+    }
+    static void solution(){
+
     }
     static int[] getIntegerArray(int n){
         int[] arr = new int[n];
