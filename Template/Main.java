@@ -2,12 +2,12 @@ package Template;
 
 import java.util.Scanner;
 
-public class Main {
+class Solution{
     static Scanner sc;
     static int mod = (int)1e9+7;
     static String yes= "YES";
     static String no = "NO";
-    static int max = Integer.MAX_VALUE, min = Integer.MIN_VALUE;
+    static int int_max = Integer.MAX_VALUE, int_min = Integer.MIN_VALUE;
     public static void main(String[] args) {
         solve();
     }
@@ -21,6 +21,7 @@ public class Main {
     static void solution(){
 
     }
+
     static int[] getIntegerArray(int n){
         int[] arr = new int[n];
         for(int i=0;i<n;i++){
