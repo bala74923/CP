@@ -1,4 +1,4 @@
-package Template;
+package KickStartRoundG2022;
 
 import java.util.Scanner;
 
@@ -18,7 +18,29 @@ class Solution{
             solution(i);
     }
     static void solution(int caseNo){
-        //google kickstart -> System.out.printf("Case #%d: ",caseNo);
+        int N = sc.nextInt() ;
+        int[] arr = getIntegerArray(N);
+        long res = 0 , sum =0;
+        int pre =0;
+        for(int i=0;i<=N;i++){
+            if(i==N ||  sum+arr[i]<0){ // stop condition
+                long val = sum;
+                while(pre<N && pre<=i){
+                    val-=arr[pre];
+                    if(pre==N-1 || arr[pre+1]>=0) res+=val; //else we cannot exclude current element
+                    // as the next element is negative
+                    pre++;
+                }
+                sum = 0;
+            }
+            else{
+                sum+= arr[i];
+                res+= arr[i];
+            }
+        }
+
+        System.out.printf("Case #%d: ",caseNo);
+        System.out.println(res);
     }
 
     static int[] getIntegerArray(int n){
@@ -31,21 +53,5 @@ class Solution{
     static char[] getCharacterArray(int n){
         String s = sc.next();
         return s.toCharArray();
-    }
-    static boolean isOdd(int n){
-        return (n&1)==1;
-    }
-    static boolean isEven(int n){
-        return (n&1)==0;
-    }
-    static long fact(int n){
-        return n*fact(n-1);
-    }
-    static long gcd(long a,long b){ // a is big
-        if(b==0) return a;
-        return gcd(b,a%b);
-    }
-    static long lcm(long a,long b){
-        return (a*b)/gcd(a,b);
     }
 }

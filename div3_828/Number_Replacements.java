@@ -1,8 +1,12 @@
-package KickStartRoundG2022;
+package div3_828;
 
+import javax.xml.stream.events.Characters;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
-class Solution1 {
+public class Number_Replacements {
     static Scanner sc;
     static int mod = (int)1e9+7;
     static String yes= "YES";
@@ -18,22 +22,25 @@ class Solution1 {
             solution(i);
     }
     static void solution(int caseNo){
-        int  m = sc.nextInt(), n = sc.nextInt(), p = sc.nextInt();
-        long res = 0;
-        int[] marr = new int[n];
-        int[][] in = new int[m][n];
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                int curr = sc.nextInt();
-                in[i][j] = curr;
-                marr[j] = Math.max(curr,marr[j]);
+        //System.out.printf("Case #%d: ",caseNo);
+        int N = sc.nextInt();
+        int[] arr = getIntegerArray(N);
+        char[] alpha = getCharacterArray(N);
+
+        Map<Integer,Character> map = new HashMap<>();
+
+        boolean flag = true;
+        for(int i=0;i<N && flag;i++){
+            if(map.get(arr[i])==null){
+                map.put(arr[i],alpha[i]);
+            }else{
+                if(map.get(arr[i])!=alpha[i]) {
+                    //System.out.printf("val = %d arr[i] =%c stored = %c\n",i,alpha[i],map.get(arr[i]));
+                    flag = false;
+                }
             }
         }
-        for(int day=0;day<n;day++){
-            res+= Math.max(marr[day]-in[p-1][day],0);
-        }
-        System.out.printf("Case #%d: ",caseNo);
-        System.out.println(res);
+        System.out.println(flag?yes:no);
     }
 
     static int[] getIntegerArray(int n){
@@ -47,4 +54,5 @@ class Solution1 {
         String s = sc.next();
         return s.toCharArray();
     }
+
 }

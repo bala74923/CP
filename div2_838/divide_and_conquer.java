@@ -1,8 +1,8 @@
-package Template;
+package div2_838;
 
 import java.util.Scanner;
 
-class Solution{
+public class divide_and_conquer {
     static Scanner sc;
     static int mod = (int)1e9+7;
     static String yes= "YES";
@@ -18,6 +18,32 @@ class Solution{
             solution(i);
     }
     static void solution(int caseNo){
+        int N = sc.nextInt();
+        int[] arr = getIntegerArray(N);
+        long res =0;
+        for(int n: arr)
+            res+=n;
+
+        if(res%2==0)
+            System.out.println(0);
+        else{
+            int min = int_max;
+            for(int val: arr){
+                int last = (val&1)^1; // opposite of last bit
+                int ind = 0;
+                while((1<<ind)<=val){
+                    //System.out.println((1<<ind)+" for val="+val+" last  ="+last);
+                    int bit = ((1<<ind)&val)!=0?1:0;
+                    if(bit==last){
+                        //System.out.println("found at"+ind+" for val = "+val);
+                        break;
+                    }
+                    ind++;
+                }
+                min = Math.min(min,ind);
+            }
+            System.out.println(min);
+        }
         //google kickstart -> System.out.printf("Case #%d: ",caseNo);
     }
 
